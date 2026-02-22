@@ -1,0 +1,4 @@
+.problems.txt
+node_modules/
+.env
+dist/
