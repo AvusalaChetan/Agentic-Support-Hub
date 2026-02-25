@@ -36,7 +36,7 @@ export const orderSampleData: OrderSampleDataType[] = [
     orderTimestamp: new Date(now.getTime() - 180 * 60000),
     refundStatus: "none",
     driverName: "Mike Rodriguez",
-    deliveryAddress: "742 Evergreen Terrace, Springfield",
+    deliveryAddress: "221B Baker Street, London",
   },
   {
     orderId: "ORD-002",
@@ -53,7 +53,7 @@ export const orderSampleData: OrderSampleDataType[] = [
     orderTimestamp: new Date(now.getTime() - 60 * 60000),
     refundStatus: "none",
     driverName: "Sarah Chen",
-    deliveryAddress: "742 Evergreen Terrace, Springfield",
+    deliveryAddress: "1600 Pennsylvania Avenue NW, Washington, DC",
   },
   {
     orderId: "ORD-003",
@@ -71,7 +71,7 @@ export const orderSampleData: OrderSampleDataType[] = [
     refundStatus: "none",
     driverName: "David Park",
     driverLocation: {lat: 28.6139, lng: 77.209},
-    deliveryAddress: "742 Evergreen Terrace, Springfield",
+    deliveryAddress: "10 Downing Street, London",
   },
   {
     orderId: "ORD-004",
@@ -86,7 +86,7 @@ export const orderSampleData: OrderSampleDataType[] = [
     deliveryTimestamp: null,
     orderTimestamp: new Date(now.getTime() - 10 * 60000),
     refundStatus: "none",
-    deliveryAddress: "742 Evergreen Terrace, Springfield",
+    deliveryAddress: "350 Fifth Avenue, New York, NY",
   },
 ];
 
@@ -96,7 +96,7 @@ export const userSampleData = [
     name: "Alex Johnson",
     email: "alex.johnson@example.com",
     phone: "+1-555-0123",
-    address: "742 Evergreen Terrace, Springfield",
+    address: "221B Baker Street, London",
     orderHistory: ["ORD-001", "ORD-002", "ORD-003", "ORD-004"],
-  }
+  },
 ];

@@ -101,21 +101,28 @@ async function executeFunctionCall(
   switch (functionName) {
     case "getOrderStatus":
       onThinking?.("Looking up order details in database...");
-      return await getOrderStatus(args.orderId as string, userId as string);
+      return await getOrderStatus(
+        args.orderId as string,
+        (args.userId as string) || userId,
+      );
     case "processRefund":
       onThinking?.(" Evaluating refund eligibility (checking 45-min rule)...");
       return await processRefund(
         args.orderId as string,
-        userId as string,
+        (args.userId as string) || userId,
         args.reason as string | undefined,
       );
     case "trackDriver":
       onThinking?.("Fetching real-time driver location...");
-      return await trackDriver(args.orderId as string, userId as string);
+      return await trackDriver(
+        args.orderId as string,
+        (args.userId as string) || userId,
+      );
     case "getOrderHistory":
       onThinking?.(" Retrieving order history...");
       return await getOrderHistory(
-        userId as string,
+        (args.userId as string) || userId,
+        args.orderId as string,
         args.limit as number | undefined,
       );
     default:

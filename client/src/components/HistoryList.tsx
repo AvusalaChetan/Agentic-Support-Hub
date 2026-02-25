@@ -60,7 +60,7 @@ export function HistoryList({data}: HistoryListProps) {
     return (
       <Card className="glass-panel h-full flex items-center justify-center">
         <div className="text-center p-8">
-          <p className="text-sm text-red-400">⚠️ {data.error}</p>
+          <p className="text-sm text-red-400">{data.error}</p>
         </div>
       </Card>
     );

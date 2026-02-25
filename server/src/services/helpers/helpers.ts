@@ -159,9 +159,10 @@ export async function trackDriver(orderId: string, userId: string) {
   };
 }
 
-export async function getOrderHistory(userId: string, limit: number = 10) {
+export async function getOrderHistory(userId: string,orderId?: string, limit: number = 10) {
   const orders = await Order.find({
     userId,
+    orderId,
     status: {$in: ["delivered", "refunded", "cancelled"]},
   })
     .sort({orderTimestamp: -1})

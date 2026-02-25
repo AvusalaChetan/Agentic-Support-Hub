@@ -186,10 +186,17 @@ export function ChatWindow({
         {/* Error display */}
         {error && (
           <div className="mx-auto max-w-sm p-3 rounded-lg bg-destructive/10 border border-destructive/20 text-sm text-red-400 animate-slide-up">
-            {error.includes("tool call validation failed") ||
-            error.includes("invalid_request_error")
-              ? "Sorry, I couldn’t retrieve your order history. Please check your request or try again later."
-              : error}
+            {(() => {
+              // Add more flexible error handling here
+              if (
+                /tool call validation failed|invalid_request_error|rate limit|timeout|network|unavailable|fetch failed|429|503|504|connection/i.test(
+                  error,
+                )
+              ) {
+                return "Sorry, something went wrong while retrieving your data. Please check your request or try again later.";
+              }
+              return error;
+            })()}
           </div>
         )}
 

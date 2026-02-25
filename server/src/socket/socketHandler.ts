@@ -15,6 +15,9 @@ export function setupSocketHandlers(io: Server) {
     // Initialize conversation history for this client
     conversations.set(socket.id, []);
 
+    // Send conversation history to client on connect
+    socket.emit("chat:history", {history: conversations.get(socket.id) || []});
+
     socket.on("chat:message", async (data: {message: string}) => {
       const {message} = data;
 
@@ -36,7 +39,7 @@ export function setupSocketHandlers(io: Server) {
       };
 
       try {
-        onThinking("📨 Message received. Starting processing...");
+        onThinking(" Message received. Starting processing...");
 
         const result = await handleChat(message, history, onThinking);
 
