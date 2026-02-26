@@ -11,7 +11,6 @@ type WidgetType = "refund" | "map" | "history" | null;
 export function Dashboard() {
   const {
     isConnected,
-    thinkingSteps,
     sendMessage,
     lastResponse,
     isProcessing,
@@ -189,9 +188,9 @@ function DefaultWidget() {
           see widgets appear here.
         </p>
         <div className="mt-6 grid grid-cols-3 gap-3">
-          <QuickAction emoji="📦" label="Check Order" hint="ORD-001" />
-          <QuickAction emoji="💰" label="Refund" hint="ORD-001" />
-          <QuickAction emoji="🗺️" label="Track" hint="ORD-003" />
+          <QuickAction emoji="" label="Check Order" hint="ORD-001" />
+          <QuickAction emoji="" label="Refund" hint="ORD-001" />
+          <QuickAction emoji="" label="Track" hint="ORD-003" />
         </div>
       </div>
     </div>
