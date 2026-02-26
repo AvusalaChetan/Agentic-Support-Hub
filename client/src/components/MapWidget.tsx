@@ -1,7 +1,7 @@
-import {MapPin, Navigation, Clock, User} from "lucide-react";
-import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
 import {Badge} from "@/components/ui/badge";
+import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
 import {GoogleMap, Marker, useJsApiLoader} from "@react-google-maps/api";
+import {Clock, MapPin, Navigation, User} from "lucide-react";
 import {useCallback, useState} from "react";
 
 interface MapWidgetProps {
@@ -9,7 +9,6 @@ interface MapWidgetProps {
     orderId?: string;
     driverName?: string;
     driverLocation?: {lat: number; lng: number};
-    deliveryAddress?: string;
     status?: string;
     message?: string;
   } | null;
@@ -55,7 +54,6 @@ export function MapWidget({data}: MapWidgetProps) {
         <GoogleMapWidget
           driverLocation={data.driverLocation}
           driverName={data.driverName}
-          deliveryAddress={data.deliveryAddress}
         />
 
         {/* Info bar */}
@@ -92,13 +90,11 @@ export function MapWidget({data}: MapWidgetProps) {
 interface GoogleMapWidgetProps {
   driverLocation?: {lat: number; lng: number};
   driverName?: string;
-  deliveryAddress?: string;
 }
 
 const GoogleMapWidget = ({
   driverLocation,
   driverName,
-  deliveryAddress,
 }: GoogleMapWidgetProps) => {
   if (!import.meta.env.VITE_GOOGLE_API_KEY) {
     return (
@@ -119,6 +115,7 @@ const GoogleMapWidget = ({
   });
   const [map, setMap] = useState(null);
   // Default to New Delhi if no driver location
+  console.log(map);
   const center = driverLocation || {lat: 28.6139, lng: 77.209};
 
   const onLoad = useCallback((map: any) => {
