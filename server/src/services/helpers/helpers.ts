@@ -6,9 +6,7 @@ const now : Date = new Date();
 export async function getOrderStatus(orderId: string, userId: string) {
   try {
     const order = await Order.findOne({orderId, userId});
-    console.log(
-      `getOrderStatus: Looking up ${order} ${orderId} for user ${userId}`,
-    );
+
     if (!order) {
       return {success: false, error: `Order ${orderId} not found.`};
     }

@@ -113,7 +113,7 @@ const GoogleMapWidget = ({
   const {isLoaded, loadError} = useJsApiLoader({
     googleMapsApiKey: import.meta.env.VITE_GOOGLE_API_KEY,
   });
-const [map, setMap] = useState<google.maps.Map | null>(null);  // Default to New Delhi if no driver location
+   const [, setMap] = useState<google.maps.Map | null>(null);  // Default to New Delhi if no driver location
  
   const center = driverLocation || {lat: 28.6139, lng: 77.209};
 
