@@ -20,6 +20,10 @@ const CLIENT_URL = process.env.CLIENT_URL || "http://localhost:5173";
 app.use(cors({origin: CLIENT_URL, credentials: true}));
 app.use(express.json());
 
+app.get('/', (req, res) => {
+  res.send('Welcome to the Agentic Support Hub API!');
+});
+
 // ─── Routes ─────────────────────────────────────────────────────────
 app.use("/api", apiRoutes);
 
@@ -39,7 +43,7 @@ async function startServer() {
     const mongoUri = process.env.MONGODB_URI;
     if (!mongoUri) {
       console.warn(
-        "⚠️  MONGODB_URI not set. Running without database connection.",
+        "MONGODB_URI not set. Running without database connection.",
       );
       console.warn("  Set MONGODB_URI in .env to enable database features.");
     } else {
@@ -53,7 +57,7 @@ async function startServer() {
     server.listen(PORT, () => {
       console.log(`
 ╔══════════════════════════════════════════════╗
-║   🚀 Agentic Support Hub - Server Running   ║
+║    Agentic Support Hub - Server Running   ║
 ╠══════════════════════════════════════════════╣
 ║   HTTP:   http://localhost:${PORT}           ║
 ║   Socket: ws://localhost:${PORT}             ║
@@ -62,7 +66,7 @@ async function startServer() {
       `);
     });
   } catch (error) {
-    console.error("❌ Failed to start server:", error);
+    console.error(" Failed to start server:", error);
     process.exit(1);
   }
 }

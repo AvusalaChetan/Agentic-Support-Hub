@@ -15,7 +15,12 @@ const apiKey = process.env.GROQ_API_KEY;
 if (!apiKey) throw new Error("GROQ_API_KEY not set in .env");
 const groq = new Groq({apiKey});
 
-const tools: Groq.Chat.Tool[] = [
+import {
+  ChatCompletionTool,
+  ChatCompletionMessageParam,
+} from "groq-sdk/resources/chat/completions";
+
+const tools: ChatCompletionTool[] = [
   {
     type: "function",
     function: {
@@ -137,7 +142,7 @@ export async function handleChat(
 ) {
   onThinking?.(" AI is analyzing your message...");
 
-  const messages: Groq.Chat.MessageParam[] = [
+  const messages: ChatCompletionMessageParam[] = [
     {
       role: "system",
       content: `You are an AI customer support agent for a food delivery service called "QuickBite".
@@ -184,7 +189,7 @@ You help customers with their orders, process refunds, and track deliveries.
     }
 
     // Add assistant message with tool calls to history
-    messages.push(choice.message as Groq.Chat.MessageParam);
+    messages.push(choice.message as ChatCompletionMessageParam);
 
     // Execute each tool call
     for (const toolCall of choice.message.tool_calls) {
