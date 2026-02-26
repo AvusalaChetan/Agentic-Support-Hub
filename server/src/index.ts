@@ -15,9 +15,18 @@ const server = http.createServer(app);
 
 const PORT = process.env.PORT || 8080;
 const CLIENT_URL = process.env.CLIENT_URL || "http://localhost:5173";
-if(!CLIENT_URL) console.warn("CLIENT_URL not set. Defaulting to http://localhost:5173. Set CLIENT_URL in .env to change this.");
-if(!process.env.GROQ_API_KEY) console.warn("GROQ_API_KEY not set. Grok API calls will fail. Set GROQ_API_KEY in .env to enable Grok features.");
-if(!process.env.MONGODB_URI) console.warn("MONGODB_URI not set. Database features will be disabled. Set MONGODB_URI in .env to enable database connection.");
+if (!CLIENT_URL)
+  console.warn(
+    "CLIENT_URL not set. Defaulting to http://localhost:5173. Set CLIENT_URL in .env to change this.",
+  );
+if (!process.env.GROQ_API_KEY)
+  console.warn(
+    "GROQ_API_KEY not set. Grok API calls will fail. Set GROQ_API_KEY in .env to enable Grok features.",
+  );
+if (!process.env.MONGODB_URI)
+  console.warn(
+    "MONGODB_URI not set. Database features will be disabled. Set MONGODB_URI in .env to enable database connection.",
+  );
 
 // ─── Middleware ──────────────────────────────────────────────────────
 app.use(cors({origin: CLIENT_URL, credentials: true}));
@@ -46,13 +55,21 @@ async function startServer() {
     const mongoUri = process.env.MONGODB_URI;
     if (!mongoUri) {
       console.warn("MONGODB_URI not set. Running without database connection.");
-      console.warn("  Set MONGODB_URI in .env to enable database features.");
+      console.warn("Set MONGODB_URI in .env to enable database features.");
     } else {
-      mongoose.connect(mongoUri).then(async () => {
-        console.log("Connected to MongoDB");
-        await seedData();
-        console.log(" Done!");
-      });
+      mongoose
+        .connect(mongoUri)
+        .then(async () => {
+          console.log("Connected to MongoDB");
+          await seedData().catch((err) => {
+            console.error("Seed data error:", err);
+          });
+          console.log(" Done!");
+        })
+        .catch((err) => {
+          console.error("MongoDB connection error:", err);
+          process.exit(1);
+        });
     }
 
     server.listen(PORT, () => {

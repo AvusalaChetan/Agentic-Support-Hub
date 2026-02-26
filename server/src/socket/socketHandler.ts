@@ -10,7 +10,7 @@ const conversations: Map<string, ConversationMessage[]> = new Map();
 
 export function setupSocketHandlers(io: Server) {
   io.on("connection", (socket: Socket) => {
-    console.log(`🔌 Client connected: ${socket.id}`);
+    console.log(`Client connected: ${socket.id}`);
 
     // Initialize conversation history for this client
     conversations.set(socket.id, []);

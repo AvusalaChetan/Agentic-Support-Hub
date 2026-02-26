@@ -11,8 +11,6 @@ const seedData = async () => {
   try {
     const orderDeleteResult = await Order.deleteMany({});
     const userDeleteResult = await User.deleteMany({});
-    console.log(`Deleted ${orderDeleteResult.deletedCount} orders.`);
-    console.log(`Deleted ${userDeleteResult.deletedCount} users.`);
   } catch (deleteErr) {
     console.error("Error deleting documents:", deleteErr);
     throw deleteErr;

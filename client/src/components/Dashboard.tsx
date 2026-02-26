@@ -1,10 +1,10 @@
-import {useEffect, useState} from "react";
-import {Cpu, Wifi, WifiOff, Sparkles} from "lucide-react";
-import {useSocket} from "@/hooks/useSocket";
-import {ChatWindow} from "@/components/ChatWindow";
-import {MapWidget} from "@/components/MapWidget";
-import {RefundCard} from "@/components/RefundCard";
-import {HistoryList} from "@/components/HistoryList";
+import { ChatWindow } from "@/components/ChatWindow";
+import { HistoryList } from "@/components/HistoryList";
+import { MapWidget } from "@/components/MapWidget";
+import { RefundCard } from "@/components/RefundCard";
+import { useSocket } from "@/hooks/useSocket";
+import { Cpu, Sparkles, Wifi, WifiOff } from "lucide-react";
+import { useEffect, useState } from "react";
 
 type WidgetType = "refund" | "map" | "history" | null;
 
