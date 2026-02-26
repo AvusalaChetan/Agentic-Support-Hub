@@ -33,7 +33,7 @@ app.use(cors({origin: CLIENT_URL, credentials: true}));
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.send("Welcome to the Agentic Support Hub API!");
+  res.status(200).json({message: "Agentic Support Hub API is running."});
 });
 
 // ─── Routes ─────────────────────────────────────────────────────────
