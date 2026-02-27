@@ -9,27 +9,25 @@ import mongoose from "mongoose";
 import apiRoutes from "./routes/api";
 import {setupSocketHandlers} from "./socket/socketHandler";
 import {seedData} from "./seed";
+import {warn} from "./utils/warn";
 
 const app = express();
 const server = http.createServer(app);
 
 const PORT = process.env.PORT || 8080;
-const CLIENT_URL = process.env.CLIENT_URL || "http://localhost:5173";
-if (!CLIENT_URL)
-  console.warn(
-    "CLIENT_URL not set. Defaulting to http://localhost:5173. Set CLIENT_URL in .env to change this.",
-  );
-if (!process.env.GROQ_API_KEY)
-  console.warn(
-    "GROQ_API_KEY not set. Grok API calls will fail. Set GROQ_API_KEY in .env to enable Grok features.",
-  );
-if (!process.env.MONGODB_URI)
-  console.warn(
-    "MONGODB_URI not set. Database features will be disabled. Set MONGODB_URI in .env to enable database connection.",
-  );
+const CLIENT_URL: string = process.env.CLIENT_URL || "http://localhost:5173";
+const GROQ_API_KEY: string | undefined = process.env.GROQ_API_KEY;
+const MONGODB_URI: string | undefined = process.env.MONGODB_URI;
+
+warn(CLIENT_URL, GROQ_API_KEY, MONGODB_URI);
 
 // ─── Middleware ──────────────────────────────────────────────────────
-app.use(cors({origin: CLIENT_URL, credentials: true}));
+app.use(
+  cors({
+    origin: [CLIENT_URL, "https://agentic-support-hub.zeabur.app"],
+    credentials: true,
+  }),
+);
 app.use(express.json());
 
 app.get("/", (req, res) => {
@@ -42,7 +40,7 @@ app.use("/api", apiRoutes);
 // ─── Socket.io Setup ────────────────────────────────────────────────
 const io = new Server(server, {
   cors: {
-    origin: CLIENT_URL,
+    origin: [CLIENT_URL, "https://agentic-support-hub.zeabur.app"],
     methods: ["GET", "POST"],
   },
 });
@@ -73,15 +71,6 @@ async function startServer() {
     }
 
     server.listen(PORT, () => {
-      //       console.log(`
-      // ╔══════════════════════════════════════════════╗
-      // ║    Agentic Support Hub - Server Running   ║
-      // ╠══════════════════════════════════════════════╣
-      // ║   HTTP:   http://localhost:${PORT}           ║
-      // ║   Socket: ws://localhost:${PORT}             ║
-      // ║   Client: ${CLIENT_URL}                      ║
-      // ╚══════════════════════════════════════════════╝
-      //       `);
       console.log(`Agentic Support Hub - Server Running   `);
     });
   } catch (error) {
