@@ -23,7 +23,10 @@ interface UseSocketReturn {
   clearThinking: () => void;
 }
 
-const SERVER_URL = import.meta.env.SERVER_URL || 'http://localhost:8080';
+const SERVER_URL = import.meta.env.SERVER_URL;
+if(!SERVER_URL && !import.meta.env.SERVER_URL ) {
+  console.warn('SERVER_URL is not defined in environment variables.');
+}
 
 export function useSocket(serverUrl: string = SERVER_URL): UseSocketReturn {
   const socketRef = useRef<Socket | null>(null);
