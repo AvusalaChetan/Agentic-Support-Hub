@@ -6,6 +6,7 @@ export const warn = (
   if (!CLIENT_URL)
     console.warn(
       "CLIENT_URL not set. Defaulting to http://localhost:5173. Set CLIENT_URL in .env to change this.",
+      CLIENT_URL
     );
   if (!GROQ_API)
     console.warn(
