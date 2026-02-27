@@ -23,8 +23,8 @@ interface UseSocketReturn {
   clearThinking: () => void;
 }
 
-const SERVER_URL = import.meta.env.SERVER_URL;
-if(!SERVER_URL && !import.meta.env.SERVER_URL ) {
+const SERVER_URL = import.meta.env.VITE_SERVER_URL;
+if(!SERVER_URL && !import.meta.env.VITE_SERVER_URL ) {
   console.warn('SERVER_URL is not defined in environment variables.');
 }
 
