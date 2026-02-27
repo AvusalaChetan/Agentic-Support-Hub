@@ -15,7 +15,7 @@ const app = express();
 const server = http.createServer(app);
 
 const PORT = process.env.PORT || 8080;
-const CLIENT_URL: string = process.env.CLIENT_URL || "http://localhost:5173";
+const CLIENT_URL: string = process.env.CLIENT_URL || "https://agentic-support-hub.netlify.app/";
 const GROQ_API_KEY: string | undefined = process.env.GROQ_API_KEY;
 const MONGODB_URI: string | undefined = process.env.MONGODB_URI;
 
