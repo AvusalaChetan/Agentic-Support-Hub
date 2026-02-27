@@ -24,7 +24,7 @@ warn(CLIENT_URL, GROQ_API_KEY, MONGODB_URI);
 // ─── Middleware ──────────────────────────────────────────────────────
 app.use(
   cors({
-    origin: [CLIENT_URL, "https://agentic-support-hub.zeabur.app"],
+    origin: [CLIENT_URL, "https://agentic-support-hub.netlify.app/"],
     credentials: true,
   }),
 );
@@ -40,7 +40,7 @@ app.use("/api", apiRoutes);
 // ─── Socket.io Setup ────────────────────────────────────────────────
 const io = new Server(server, {
   cors: {
-    origin: [CLIENT_URL, "https://agentic-support-hub.zeabur.app"],
+    origin: [CLIENT_URL, "https://agentic-support-hub.netlify.app/"],
     methods: ["GET", "POST"],
   },
 });
