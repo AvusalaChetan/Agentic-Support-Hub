@@ -50,7 +50,7 @@ if (require.main === module) {
       await mongoose.disconnect();
       console.log("✅ Done!");
     })
-    .catch((err) => {
+    .catch((err: any) => {
       console.error(err);
       process.exit(1);
     });

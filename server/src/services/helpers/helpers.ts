@@ -173,7 +173,7 @@ export async function getOrderHistory(userId: string,orderId?: string, limit: nu
 
   return {
     success: true,
-    data: orders.map((order) => ({
+    data: orders.map((order: any) => ({
       orderId: order.orderId,
       items: order.items,
       totalAmount: order.totalAmount,

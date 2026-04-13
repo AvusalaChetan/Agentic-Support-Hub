@@ -30,7 +30,7 @@ app.use(
 );
 app.use(express.json());
 
-app.get("/", (req, res) => {
+app.get("/", (req: express.Request, res: express.Response) => {
   res.status(200).json({message: "Agentic Support Hub API is running."});
 });
 
@@ -59,12 +59,12 @@ async function startServer() {
         .connect(mongoUri)
         .then(async () => {
           console.log("Connected to MongoDB");
-          await seedData().catch((err) => {
+          await seedData().catch((err: any) => {
             console.error("Seed data error:", err);
           });
           console.log(" Done!");
         })
-        .catch((err) => {
+        .catch((err: any) => {
           console.error("MongoDB connection error:", err);
           process.exit(1);
         });
