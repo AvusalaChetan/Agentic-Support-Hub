@@ -36,24 +36,24 @@ const seedData = async () => {
 };
 
 // If run directly, connect/disconnect
-if (require.main === module) {
-  const mongoUri = process.env.MONGODB_URI;
-  if (!mongoUri) {
-    console.error("MONGODB_URI not set in .env");
-    process.exit(1);
-  }
-  mongoose
-    .connect(mongoUri)
-    .then(async () => {
-      console.log("Connected to MongoDB");
-      await seedData();
-      await mongoose.disconnect();
-      console.log("✅ Done!");
-    })
-    .catch((err: any) => {
-      console.error(err);
-      process.exit(1);
-    });
-}
+// if (require.main === module) {
+//   const mongoUri = process.env.MONGODB_URI;
+//   if (!mongoUri) {
+//     console.error("MONGODB_URI not set in .env");
+//     process.exit(1);
+//   }
+//   mongoose
+//     .connect(mongoUri)
+//     .then(async () => {
+//       console.log("Connected to MongoDB");
+//       await seedData();
+//       await mongoose.disconnect();
+//       console.log("✅ Done!");
+//     })
+//     .catch((err: any) => {
+//       console.error(err);
+//       process.exit(1);
+//     });
+// }
 
 export {seedData};

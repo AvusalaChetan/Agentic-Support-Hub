@@ -202,7 +202,7 @@ You help customers with their orders, process refunds, and track deliveries.
         onThinking,
       );
 
-      onThinking?.(`✅ ${toolCall.function.name} completed.`);
+      onThinking?.(` ${toolCall.function.name} completed.`);
 
       // Track widget
       switch (toolCall.function.name) {
